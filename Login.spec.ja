@@ -1,0 +1,17 @@
+import { test } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+
+test('Customer Login - Valid Credentials', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
+  await loginPage.goto();
+
+  await loginPage.login(
+    'testuser@mail.com',   // use registered user
+    'Password123!'
+  );
+
+  await loginPage.submit();
+
+  await loginPage.verifyLoginSuccess();
+});
